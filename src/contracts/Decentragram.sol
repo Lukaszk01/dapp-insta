@@ -2,6 +2,8 @@ pragma solidity ^0.5.0;
 
 contract Decentragram {
   string public name = "Decentragram";
+
+  uint public imageCount = 0;
   mapping(uint => Image) public images;
 
   struct Image {
@@ -11,8 +13,20 @@ contract Decentragram {
     uint tipAmount;
     address payable author;
   }
+  event ImageCreated(
+    uint id,
+    string hash,
+    string description,
+    uint tipAmount,
+    address payable author
+  );
 
-  function uploadImage() public {
-    images[1] = Image(1, 'abc123', 'hello world', 0, address(0x0));
+  function uploadImage(string memory _imgHash, string memory _description) public {
+
+    imageCount ++;
+
+    images[imageCount] = Image(imageCount, _imgHash, _description, 0, msg.sender);
+
+    emit ImageCreated(imageCount, _imgHash, _description, 0, msg.sender);
   }
 }
