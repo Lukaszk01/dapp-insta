@@ -99,6 +99,7 @@ class App extends Component {
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
             captureFile={this.captureFile}
+            uploadImage={this.uploadImage}
             />
           }
         }
