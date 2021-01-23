@@ -3,7 +3,7 @@ import Identicon from 'identicon.js';
 
 class Main extends Component {
 
- render() {
+  render() {
     return (
       <div className="container-fluid mt-5">
         <div className="row">
@@ -27,10 +27,10 @@ class Main extends Component {
                         placeholder="Image description..."
                         required />
                   </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
+                <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
-          
-              { this.props.images.map((images, key) => {
+              <p>&nbsp;</p>
+              { this.props.images.map((image, key) => {
                 return(
                   <div className="card mb-4" key={key} >
                     <div className="card-header">
@@ -38,22 +38,22 @@ class Main extends Component {
                         className='mr-2'
                         width='30'
                         height='30'
-                        src={`data:image/png;base64,${new Identicon(images.author, 30).toString()}`}
+                        src={`data:image/png;base64,${new Identicon(image.author, 30).toString()}`}
                       />
-                      <small className="text-muted">{images.author}</small>
+                      <small className="text-muted">{image.author}</small>
                     </div>
                     <ul id="imageList" className="list-group list-group-flush">
                       <li className="list-group-item">
-                        <p class="text-center"><img src={`https://ipfs.infura.io/ipfs/${images.hash}`} style={{ maxWidth: '420px'}}/></p>
-                        <p>{images.description}</p>
+                        <p class="text-center"><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px'}}/></p>
+                        <p>{image.description}</p>
                       </li>
                       <li key={key} className="list-group-item py-2">
                         <small className="float-left mt-1 text-muted">
-                          TIPS: {window.web3.utils.fromWei(images.tipAmount.toString(), 'Ether')} ETH
+                          TIPS: {window.web3.utils.fromWei(image.tipAmount.toString(), 'Ether')} ETH
                         </small>
                         <button
                           className="btn btn-link btn-sm float-right pt-0"
-                          name={images.id}
+                          name={image.id}
                           onClick={(event) => {
                             let tipAmount = window.web3.utils.toWei('0.1', 'Ether')
                             console.log(event.target.name, tipAmount)
