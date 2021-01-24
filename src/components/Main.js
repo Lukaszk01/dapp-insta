@@ -11,11 +11,7 @@ class Main extends Component {
             <div className="content mr-auto ml-auto">
               <p>&nbsp;</p>
               <h2>Share Image</h2>
-              <form onSubmit={(event) => {
-                event.preventDefault()
-                const description = this.imageDescription.value
-                this.props.uploadImage(description)
-              }} >
+              
                 <input type='file' accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
                   <div className="form-group mr-sm-2">
                     <br></br>
